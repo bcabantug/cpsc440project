@@ -1,56 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
 
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/scripts.js"></script>
+       
 
     </head>
-<style>
 
-#red-button{
-	background-color: red !important;
-	border:1pt solid red;
-}
-#orange-button{
-	background-color: orange;
-	border:1pt solid orange;
-}
-
-#yellow-button{
-	background-color: yellow;
-	border:1pt solid yellow;
-}
-
-#green-button{
-	background-color:green;
-	border: 1pt solid green;
-}
-
-#blue-button{
-	background-color:blue;
-	border: 1pt solid blue;
-}
-
-#white-button{
-	background-color: white;
-	border: 1pt solid black;
-}
-</style>
 
 
     <body>
+
+        <style>
+            #red-button {
+                background-color: red !important;
+                border: 1pt solid red;
+            }
+
+            #orange-button {
+                background-color: orange;
+                border: 1pt solid orange;
+            }
+
+            #yellow-button {
+                background-color: yellow;
+                border: 1pt solid yellow;
+            }
+
+            #green-button {
+                background-color: green;
+                border: 1pt solid green;
+            }
+
+            #blue-button {
+                background-color: blue;
+                border: 1pt solid blue;
+            }
+
+            #white-button {
+                background-color: white;
+                border: 1pt solid black;
+            }
+        </style>
+
         <h1 id="main-head">Piglow Color Match Game</h1>
 
-        <div class="notify-panel">
-            <form action="#" method = "get">
-            <input id="inputString" type="text" readonly style="display: hidden;">
 
+        
+        <div class="notify-panel">
             <h2 id="header">Welcome to the game! To start, click 'New Game'</h2>
+            <button id="new-game" onclick="">New Game</button>
+
+
+            <form method = "get">
+
+            <input id="inputString" readonly type="text">
+
+            
             
             <div class="button-panel">
-                <button id="new-game" onclick="">New Game</button>
+                
 
 
                 <input type= "submit" id="color-order" value = "Submit Color Order">
@@ -62,18 +71,19 @@
 
 
         <div class="light-panel">
-            <button id="red-button" onclick="">Red</button>
-            <button id="orange-button" onclick="">Orange</button>
-            <button id="yellow-button" onclick="">Yellow</button>
-            <button id="green-button" onclick="">Green</button>
-            <button id="blue-button" onclick="">Blue</button>
-            <button id="white-button" onclick="">White</button>    
+            <button id="red-button" >Red</button>
+            <button id="orange-button" >Orange</button>
+            <button id="yellow-button" >Yellow</button>
+            <button id="green-button" >Green</button>
+            <button id="blue-button" >Blue</button>
+            <button id="white-button" >White</button>    
         </div>
 
 
 
-
-
+     
+        <script src="js/jquery.min.js"></script>
+        <script src="js/scripts.js"></script>
         
     </body>
 

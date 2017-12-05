@@ -11,49 +11,37 @@ function submitColorOrder() {
 
 }
 
-$("#red-button").on('click', function () {
-    var text = $('#input-string');
-
-    text.val(text.val + ' 1')
+$("#red-button").click(function () {
+    $("#inputString").val($("#inputString").val() + '1_')
 
 })
 
-$("#orange-button").on('click', function () {
-    var text = $('#input-string');
-
-    text.val(text.val + ' 2')
+$("#orange-button").click( function () {
+    $("#inputString").val($("#inputString").val()+ '2_')
 
 
 })
     
-$("#yellow-button").on('click', function () {
-    var text = $('#input-string');
-
-    text.val(text.val + ' 3')
+$("#yellow-button").click( function () {
+    $("#inputString").val($("#inputString").val()+ '3_')
 
 
 })
 
-$("#green-button").on('click', function () {
-    var text = $('#input-string');
-
-    text.val(text.val + ' 4')
+$("#green-button").click( function () {
+    $("#inputString").val($("#inputString").val() + '4_')
 
 
 })
 
-$("#blue-button").on('click', function () {
-    var text = $('#input-string');
-
-    text.val(text.val + ' 5')
+$("#blue-button").click( function () {
+    $("#inputString").val( $("#inputString").val() +  '5_')
 
 
 })
 
-$("#white-button").on('click', function () {
-    var text = $('#input-string');
-
-    text.val(text.val + ' 6')
+$("#white-button").click(function () {
+    $("#inputString").val($("#inputString").val() + '6_')
 
 
 })

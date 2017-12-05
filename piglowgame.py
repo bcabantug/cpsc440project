@@ -35,14 +35,16 @@ class myHandler(BaseHTTPRequestHandler):
 		###################################
 		#CHECK URL AND GET THE COLOR THEN APPEND TO A LIST
 		###################################
-            if "text" in qs:
-                inText = qs['text'][0]
+            if "inputString" in qs:
+                inText = qs['inputString'][0]
             
                 self.send_response(200)
                 self.send_header('Content-type',"application/json")
                 self.end_headers()
 		self.wfile.write('"true"')
-		return
+		
+		print inText
+	    return
 	try:
 		    #Check the file extension required and
 			#set the right mime type
@@ -88,7 +90,7 @@ try:
     server = HTTPServer(('', PORT_NUMBER), myHandler)
     print 'Started piglowweb server on port ' , PORT_NUMBER
     #Wait forever for incoming http requests
-    server.serve_forever()
+    #server.serve_forever()
     while gameCont == True:
         levelCount += 1
         print "PiGlow Memory Game"
@@ -147,9 +149,19 @@ try:
                 sleep(1)
                 piglow.white(0)
                 sleep(1)
-            
+        
+        #test to see if it will process one request
+        
+        
+        
+        server.serve_forever()
+        
+        
         userAnswer = raw_input("Please enter the order of colors(with underscore separation):")
+        
         print "you entered ",userAnswer
+        
+        
     
         #list(map(int,userAnswer))
     

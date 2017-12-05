@@ -5,12 +5,6 @@ $(document).ready(
     }
     );
 
-
-function submitColorOrder() {
-    
-
-}
-
 $("#red-button").click(function () {
     $("#inputString").val($("#inputString").val() + '1_')
 

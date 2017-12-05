@@ -1,6 +1,11 @@
 from piglow import PiGlow
 from time import sleep
+from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+from os import curdir, sep
 import random
+import urlparse
+
+PORT_NUMBER = 80
 
 piglow = PiGlow()
 
@@ -16,6 +21,78 @@ numberOrder = []
 levelCount = 0
 
 
+class myHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+		#get address 
+	parts = urlparse.urlparse(self.path)
+	if parts.path=="/":
+	    self.path="/index.html"
+
+		#append to URL
+	if parts.query != "":
+	    qs = urlparse.parse_qs( parts.query )
+
+		###################################
+		#CHECK URL AND GET THE COLOR THEN APPEND TO A LIST
+		###################################
+            if "text" in qs:
+                inText = qs['text'][0]
+            
+                self.send_response(200)
+                self.send_header('Content-type',"application/json")
+                self.end_headers()
+		self.wfile.write('"true"')
+		return
+	try:
+		    #Check the file extension required and
+			#set the right mime type
+
+	    sendReply = False
+	    if self.path.endswith(".html"):
+		mimetype='text/html'
+		sendReply = True
+	    if self.path.endswith(".png"):
+		mimetype='image/png'
+		sendReply = True
+	    if self.path.endswith(".woff"):
+		mimetype='application/x-font-woff'
+		sendReply = True
+           	if self.path.endswith(".woff2"):
+                    mimetype='application/font-woff2'
+    		sendReply = True
+    	    if self.path.endswith(".ttf"):
+		mimetype='application/octet-stream'
+	    	sendReply = True
+	    if self.path.endswith(".js"):
+		mimetype='application/javascript'
+	    	sendReply = True
+	    if self.path.endswith(".css"):
+		mimetype='text/css'
+		sendReply = True
+
+            if sendReply == True:
+		#Open the static file requested and send it
+		f = open(curdir + sep + self.path) 
+		self.send_response(200)
+	    	self.send_header('Content-type',mimetype)
+    		self.end_headers()
+    		self.wfile.write(f.read())
+    		f.close()
+	    return
+
+	except IOError:
+	    self.send_error(404,'File Not Found: %s' % self.path)
+try:
+    #Create a web server and define the handler to manage the
+    #incoming request
+    server = HTTPServer(('', PORT_NUMBER), myHandler)
+    print 'Started piglowweb server on port ' , PORT_NUMBER
+    #Wait forever for incoming http requests
+    server.serve_forever()
+except KeyboardInterrupt:
+    print '^C received, shutting down the web server'
+    server.socket.close()
+    
 while gameCont == True:
     levelCount += 1
     print "PiGlow Memory Game"
@@ -75,12 +152,12 @@ while gameCont == True:
             piglow.white(0)
             sleep(1)
             
-    userAnswer = raw_input("Please enter the order of colors(with spaces):")
+    userAnswer = raw_input("Please enter the order of colors(with underscore separation):")
     print "you entered ",userAnswer
     
     #list(map(int,userAnswer))
     
-    listAnswer = map(int, userAnswer.split())
+    listAnswer = map(int, userAnswer.split('_'))
     #for i in userAnswer:
      #   print i
     
@@ -157,36 +234,3 @@ if gameCont == False:
     print "Thanks for playing!"
     piglow.all(0)
     
-
-#while True:
- #   leds = range(1, 19, +1)
-  #  for led in leds:
-   #     if count == 1:
-    #        val = val +1
-     #       if val > 90:
-      #          count = 0
-       # else:
-        #    val = val - 1
-         ##      count = 1
-        #piglow.led(led, val)
-        
-        #sleep(0.0075)
-def do_GET(self):
-		#get address 
-		parts = urlparse.urlparse(self.path)
-		if parts.path=="/":
-			self.path="/index.html"
-
-		#append to URL
-		if parts.query != "":
-			qs = urlparse.parse_qs( parts.query )
-
-		###################################
-		#CHECK URL AND GET THE COLOR THEN APPEND TO A LIST
-		###################################
-		if "text" in qs:
-			inText = qs['text'][0]
-        
-        
-        
-        

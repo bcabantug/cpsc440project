@@ -1,0 +1,28 @@
+#red-button{
+	background-color: red !important;
+	border:1pt solid red;
+}
+#orange-button{
+	background-color: orange;
+	border:1pt solid orange;
+}
+
+#yellow-button{
+	background-color: yellow;
+	border:1pt solid yellow;
+}
+
+#green-button{
+	background-color:green;
+	border: 1pt solid green;
+}
+
+#blue-button{
+	background-color:blue;
+	border: 1pt solid blue;
+}
+
+#white-button{
+	background-color: white;
+	border: 1pt solid black;
+}

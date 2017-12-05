@@ -171,4 +171,22 @@ if gameCont == False:
         #piglow.led(led, val)
         
         #sleep(0.0075)
+def do_GET(self):
+		#get address 
+		parts = urlparse.urlparse(self.path)
+		if parts.path=="/":
+			self.path="/index.html"
 
+		#append to URL
+		if parts.query != "":
+			qs = urlparse.parse_qs( parts.query )
+
+		###################################
+		#CHECK URL AND GET THE COLOR THEN APPEND TO A LIST
+		###################################
+		if "text" in qs:
+			inText = qs['text'][0]
+        
+        
+        
+        

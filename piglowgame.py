@@ -21,78 +21,78 @@ numberOrder = []
 levelCount = 0
 
 
-class myHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
+#class myHandler(BaseHTTPRequestHandler):
+#    def do_GET(self):
 		#get address 
-	parts = urlparse.urlparse(self.path)
-	if parts.path=="/":
-	    self.path="/index.html"
+#	parts = urlparse.urlparse(self.path)
+#	if parts.path=="/":
+#	    self.path="/index.html"
 
 		#append to URL
-	if parts.query != "":
-	    qs = urlparse.parse_qs( parts.query )
+#	if parts.query != "":
+#	    qs = urlparse.parse_qs( parts.query )
 
-		###################################
+#		###################################
 		#CHECK URL AND GET THE COLOR THEN APPEND TO A LIST
 		###################################
-            if "inputString" in qs:
-                inText = qs['inputString'][0]
+#            if "inputString" in qs:
+ #               inText = qs['inputString'][0]
             
-                self.send_response(200)
-                self.send_header('Content-type',"application/json")
-                self.end_headers()
-		self.wfile.write('"true"')
+#                self.send_response(200)
+#                self.send_header('Content-type',"application/json")
+#                self.end_headers()
+#		self.wfile.write('"true"')
 		
-		print inText
-	    return
-	try:
-		    #Check the file extension required and
-			#set the right mime type
+#		print inText
+#	    return
+#	try:
+#		    #Check the file extension required and
+#			#set the right mime type
 
-	    sendReply = False
-	    if self.path.endswith(".html"):
-		mimetype='text/html'
-		sendReply = True
-	    if self.path.endswith(".png"):
-		mimetype='image/png'
-		sendReply = True
-	    if self.path.endswith(".woff"):
-		mimetype='application/x-font-woff'
-		sendReply = True
-           	if self.path.endswith(".woff2"):
-                    mimetype='application/font-woff2'
-    		sendReply = True
-    	    if self.path.endswith(".ttf"):
-		mimetype='application/octet-stream'
-	    	sendReply = True
-	    if self.path.endswith(".js"):
-		mimetype='application/javascript'
-	    	sendReply = True
-	    if self.path.endswith(".css"):
-		mimetype='text/css'
-		sendReply = True
+#	    sendReply = False
+#	    if self.path.endswith(".html"):
+#		mimetype='text/html'
+#		sendReply = True
+#	    if self.path.endswith(".png"):
+#		mimetype='image/png'
+#		sendReply = True
+#	    if self.path.endswith(".woff"):
+#		mimetype='application/x-font-woff'
+#		sendReply = True
+ #          	if self.path.endswith(".woff2"):
+#                    mimetype='application/font-woff2'
+#    		sendReply = True
+#    	    if self.path.endswith(".ttf"):
+#		mimetype='application/octet-stream'
+#	    	sendReply = True
+#	    if self.path.endswith(".js"):
+#		mimetype='application/javascript'
+#	    	sendReply = True
+#	    if self.path.endswith(".css"):
+#		mimetype='text/css'
+#		sendReply = True
 
-            if sendReply == True:
+ #           if sendReply == True:
 		#Open the static file requested and send it
-		f = open(curdir + sep + self.path) 
-		self.send_response(200)
-	    	self.send_header('Content-type',mimetype)
-    		self.end_headers()
-    		self.wfile.write(f.read())
-    		f.close()
-	    return
+#		f = open(curdir + sep + self.path) 
+#		self.send_response(200)
+#	    	self.send_header('Content-type',mimetype)
+ #   		self.end_headers()
+ #   		self.wfile.write(f.read())
+#    		f.close()
+#	    return
 
-	except IOError:
-	    self.send_error(404,'File Not Found: %s' % self.path)
-try:
+#	except IOError:
+#	    self.send_error(404,'File Not Found: %s' % self.path)
+#try:
     #Create a web server and define the handler to manage the
     #incoming request
-    server = HTTPServer(('', PORT_NUMBER), myHandler)
-    print 'Started piglowweb server on port ' , PORT_NUMBER
+   # server = HTTPServer(('', PORT_NUMBER), myHandler)
+ #   print 'Started piglowweb server on port ' , PORT_NUMBER
     #Wait forever for incoming http requests
     #server.serve_forever()
-    while gameCont == True:
-        levelCount += 1
+while gameCont == True:
+	levelCount += 1
         print "PiGlow Memory Game"
     
         print "Follow the order of colors that appear and relay them back!"
@@ -154,7 +154,7 @@ try:
         
         
         
-        server.serve_forever()
+       # server.serve_forever()
         
         
         userAnswer = raw_input("Please enter the order of colors(with underscore separation):")
@@ -242,10 +242,10 @@ try:
         print "Thanks for playing!"
         piglow.all(0)
     
-except KeyboardInterrupt:
-    print '^C received, shutting down the web server'
-    server.socket.close()
-    piglow.all(0)
+#except KeyboardInterrupt:
+  #  print '^C received, shutting down the web server'
+ #   server.socket.close()
+  #  piglow.all(0)
     
 
     
